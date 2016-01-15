@@ -10,6 +10,7 @@ alias downloads="cd ~/Downloads && ls"
 # to help with making git better
 alias gitupdate="git status && git pull && git push && git status"
 alias pim="ipython qtconsole & vim"
+alias bashrc="vim ~/.custombashrc/.bashrc"
 
 cdd () {
 cd $1
@@ -29,8 +30,10 @@ alias science="cd ~/workspace/science && ls"
 alias kad="cd ~/workspace/science/libraries/python/kad && ls"
 alias reaktorutils="workon kad-rad && cd ~/workspace/science/libraries/python/kad/kad/reaktor/ && ls"
 alias reaktorgrader="workon kad-rad && cd ~/workspace/science/auto_grading/code/calarts_synthesis_reaktor2/reaktor_grader2/ && ls"
+alias reaktorcrit="workon kad-rad && cd ~/workspace/science/auto_grading/code/calarts_synthesis_reaktor2/reaktor_grader2/media/criteria && ls"
+
 alias rgtox="workon kad-rad && cd ~/workspace/science/auto_grading/code/calarts_synthesis_reaktor2 && tox"
-alias togit="tox -i "
+alias toxit="tox -i ALL=http://devpi.kadenze.com/nathan/dev/+simple/"
 alias reaktorassignments="workon kad-rad && cd ~/workspace/science/auto_grading/code/calarts_synthesis_reaktor2/tests/data && ls"
 alias gandalf_home="ssh nathan@76.170.76.201"
 alias gandalf_work="ssh nathan@192.168.1.2"
@@ -38,9 +41,3 @@ alias gandalf_work="ssh nathan@192.168.1.2"
 workon() {
     . $HOME/.virtualenvs/$1/bin/activate
 }
-
-# pyenv setup this should be at the end of the file
-export PATH=~/.pynev/shims:$PATH
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
