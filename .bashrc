@@ -84,7 +84,7 @@ pyenv_python_version(){
 # this was my old one
 # PS1="**\h:\W**🌀   "
 
-export PS1="\$(pyenv_python_version)\[\033[33;1m\]*\W\*[\033[m\]🌀   "
+export PS1="\$(pyenv_python_version)\[\033[33;1m\]*\W\* 🌀   "
 
 ##################################################################
 
