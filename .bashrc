@@ -13,8 +13,8 @@ alias pim="ipython qtconsole & vim"
 alias bashrc="vim ~/.custombashrc/.bashrc"
 
 # vim stuff
-# alias vim="/usr/local/opt/macvim/MacVim.app/Contents/MacOS/Vim"
 alias vim="/usr/local/Cellar/vim/7.4.1830/bin/vim"
+
 # this allows me to press <ctrl> S to send lines of code from vim into ipython
 stty -ixon
 
@@ -31,13 +31,12 @@ ls
 }
 
 stty stop undef
+
 # add path to git-annex
 export PATH=/Applications/git-annex.app/Contents/MacOS:$PATH
 
 ######################### Work Realated ##########################################
 alias startwork="kad && workon kad-rad && pyenv global 3.4.3 && git status-kad && devp ilogin nathan"
-rt VIRTUAL_ENV_DISABLE_PROMPT=1
-
 alias comics="workon kad-rad && cd ~/workspace/science/research/comics && git status"
 alias manta="cd ~/workspace/manta && source ~/workspace/manta/flask/flask/bin/activate && git status"
 alias science="cd ~/workspace/science && ls"
@@ -50,7 +49,6 @@ alias p5js="workon kad-rad && cd /Users/nathan/workspace/science/auto_grading/en
 alias pfjs="workon kad-rad && cd /Users/nathan/workspace/science/auto_grading/ensemble/p5js_code_grader/p5js_code_grader && ls"
 alias rgtox="workon kad-rad && cd ~/workspace/science/auto_grading/code/calarts_synthesis_reaktor2 && tox"
 alias toxit="make clean && tox -i ALL=http://devpi.kadenze.com/nathan/dev/+simple/"
-alias reaktorassignments="workon kad-rad && cd ~/workspace/science/auto_grading/code/calarts_synthesis_reaktor2/tests/data && ls"
 alias gandalf_home="ssh nathan@76.170.76.201"
 alias gandalf_work="ssh nathan@192.168.1.2"
 ############### Not Work ###########################
@@ -61,6 +59,8 @@ alias toxmax="workon kad-rad && cd ~/workspace/science/research/max_msp/max_msp_
 workon() {
     . $HOME/.virtualenvs/$1/bin/activate
 }
+
+############## Command Prompts ##################################
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
@@ -79,9 +79,14 @@ pyenv_python_version(){
     [[ -n "$result" ]] && echo "($result) "
 }
 
+# this was one I downloaded
 # export PS1="\$(pyenv_python_version)\\h\[\033[33;1m\]\w\[\033[m\] \$ "
-export PS1="\$(pyenv_python_version)\[\033[33;1m\] **\W\[\033[m\]**🌀   "
+# this was my old one
 # PS1="**\h:\W**🌀   "
+
+export PS1="\$(pyenv_python_version)\[\033[33;1m\]*\W\*[\033[m\]🌀   "
+
+##################################################################
 
 function export_json(){
     python ~/.json_export.py $1
