@@ -1,9 +1,10 @@
 #!/bin/python
+
 export PYTHONPATH=$HOME/workspace/science/libraries/python/kad
 alias lovebot="python ~/Documents/love_bot/lovebot.py"
 alias ls="ls -GFh"
 alias sl='ls -la'
-alias vimrc="vim ~/.vim_runtime/vimrcs/my_configs.vim && ls"
+alias vimrc="vim ~/.custom_vimrc/vimrc.vim"
 alias desktop="cd ~/Desktop && ls"
 alias downloads="cd ~/Downloads && ls"
 
@@ -36,25 +37,35 @@ stty stop undef
 export PATH=/Applications/git-annex.app/Contents/MacOS:$PATH
 
 ######################### Work Realated ##########################################
+
 alias startwork="kad && workon kad-rad && pyenv global 3.4.3 && git status-kad && devp ilogin nathan"
 alias comics="workon kad-rad && cd ~/workspace/science/research/comics && git status"
 alias manta="cd ~/workspace/manta && source ~/workspace/manta/flask/flask/bin/activate && git status"
 alias science="cd ~/workspace/science && ls"
 alias kad="cd ~/workspace/science/libraries/python/kad && workon kad-rad && ls"
 alias reaktorutils="workon kad-rad && cd ~/workspace/science/libraries/python/kad/kad/reaktor/ && ls"
-alias reaktorgrader="workon kad-rad && cd ~/workspace/science/auto_grading/code/calarts_synthesis_reaktor2/reaktor_grader2/ && ls"
+alias reaktorgrader="workon kad-rad && cd ~/workspace/science/auto_grading/code/calarts_synthesis_reaktor2 && ls"
+alias autograde="workon kad-rad && cd
+~/workspace/science/auto_grading && ls"
 alias reaktorcrit="workon kad-rad && cd ~/workspace/science/auto_grading/code/calarts_synthesis_reaktor2/reaktor_grader2/media/criteria && ls"
-alias max="workon kad-rad && cd ~/workspace/science/research/max_msp/max_msp_grader && ls"
+alias max="workon kad-rad && cd ~/workspace/science/auto_grading/code/max_msp_grader && ls"
 alias p5js="workon kad-rad && cd /Users/nathan/workspace/science/auto_grading/ensemble/p5js_code_grader/p5js_code_grader && ls"
 alias pfjs="workon kad-rad && cd /Users/nathan/workspace/science/auto_grading/ensemble/p5js_code_grader/p5js_code_grader && ls"
 alias rgtox="workon kad-rad && cd ~/workspace/science/auto_grading/code/calarts_synthesis_reaktor2 && tox"
-alias toxit="make clean && tox -i ALL=http://devpi.kadenze.com/nathan/dev/+simple/"
+alias toxitt="make clean && tox -e verbose ALL=http://devpi.kadenze.com/nathan/dev/+simple/ &&
+    make clean && rm -r .cache/"
+alias toxit="make clean && tox -e verbose"
+alias wks="cd ~/workspace && ls"
 alias gandalf_home="ssh nathan@76.170.76.201"
 alias gandalf_work="ssh nathan@192.168.1.2"
+alias computermusic="cd ~/workspace/computer_music && git status && ls -la"
+alias website="cd ~/workspace/nathanshaw.github.io && ls"
+
 ############### Not Work ###########################
 alias ios="cd ~/workspace/ios_dev/active_projects/BiTDEPH\ Synthesizer && git status && ls -la"
 
 alias toxmax="workon kad-rad && cd ~/workspace/science/research/max_msp/max_msp_grader && ls && git checkout tests/. && tox -e verbose"
+alias website="cd ~/workspace/nathanshaw.github.io && ls"
 
 workon() {
     . $HOME/.virtualenvs/$1/bin/activate
@@ -79,12 +90,42 @@ pyenv_python_version(){
     [[ -n "$result" ]] && echo "($result) "
 }
 
+robots() {
+    SERVICE='chuck'
+
+    if ps ax | grep -v grep | grep $SERVICE > /dev/null
+    then
+        echo "$SERVICE killing running chuck programs"
+        killall chuck
+    fi
+
+    chuck ~/workspace/nathans_robots/serial-robot-server/master.ck --port:8888 &
+    chuck ~/workspace/nathans_robots/midi-robot-server/master.ck --port:8889
+}
+
+masters(){
+
+    SERVICE='chuck'
+
+    if ps ax | grep -v grep | grep $SERVICE > /dev/null
+    then
+        echo "$SERVICE killing running chuck programs"
+        killall chuck
+    fi
+
+    chuck ~/workspace/nathans_robots/serial-robot-server/master.ck --port:8888 &
+    chuck ~/workspace/nathans_robots/midi-robot-server/master.ck --port:8889
+    wait 5
+    chuck ~/Desktop/No_Humans_Allowed/masters_show/masters_show_main.ck 
+
+}
+
 # this was one I downloaded
-# export PS1="\$(pyenv_python_version)\\h\[\033[33;1m\]\w\[\033[m\] \$ "
 # this was my old one
 # PS1="**\h:\W**🌀   "
 
-export PS1=" \[\033[33;1m\]\$(pyenv_python_version)\[\033[36;1m\]*\W\* 🌀   \[\033[39;1m\]"
+#export PS1=" \[\033[33;1m\]\$(pyenv_python_version)\[\033[36;1m\]*\W\* 🌀  \[\033[39;1m\]"
+export PS1=" \[\033[33;1m\]\$(pyenv_python_version)\[\033[36;1m\]*\W\*🌀  \[\033[0;37m\]"
 
 ##################################################################
 
@@ -93,3 +134,6 @@ function export_json(){
 }
 
 eval "$(pyenv init -)"
+
+# this is to ensure that vim colorschemes appear inside of tmux
+alias tmux="TERM=screen-256color-bce tmux"
