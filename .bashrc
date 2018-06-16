@@ -14,7 +14,7 @@ alias pim="ipython qtconsole & vim"
 alias bashrc="vim ~/.custombashrc/.bashrc"
 
 # vim stuff
-alias vim="/usr/local/Cellar/vim/7.4.1830/bin/vim"
+# alias vim="/usr/local/Cellar/vim/7.4.1830/bin/vim"
 
 # this allows me to press <ctrl> S to send lines of code from vim into ipython
 stty -ixon
@@ -116,7 +116,7 @@ masters(){
     chuck ~/workspace/nathans_robots/serial-robot-server/master.ck --port:8888 &
     chuck ~/workspace/nathans_robots/midi-robot-server/master.ck --port:8889
     wait 5
-    chuck ~/Desktop/No_Humans_Allowed/masters_show/masters_show_main.ck 
+    chuck ~/Desktop/No_Humans_Allowed/masters_show/masters_show_main.ck --port: 9990
 
 }
 
@@ -124,8 +124,9 @@ masters(){
 # this was my old one
 # PS1="**\h:\W**🌀   "
 
-#export PS1=" \[\033[33;1m\]\$(pyenv_python_version)\[\033[36;1m\]*\W\* 🌀  \[\033[39;1m\]"
-export PS1=" \[\033[33;1m\]\$(pyenv_python_version)\[\033[36;1m\]*\W\*🌀  \[\033[0;37m\]"
+# export PS1=" \[\033[33;1m\]\$(pyenv_python_version)\[\033[36;1m\]*\W\*🌀  \[\033[0;37m\]"
+source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
+export PS1="\n\[\[\033[38;5;44m\]\t\[\033[31m\]:\[\033[38;5;194m\]\w\[\033[38;5;166m\]$(__git_ps1) 💎\[\033[38;5;159m\]\]  "
 
 ##################################################################
 
