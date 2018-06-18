@@ -1,9 +1,8 @@
 #!/bin/python
-
-export PYTHONPATH=$HOME/workspace/science/libraries/python/kad
-alias lovebot="python ~/Documents/love_bot/lovebot.py"
 alias ls="ls -GFh"
 alias sl='ls -la'
+alias ll='ls -la'
+alias l.='ls -d .* --color=auto'
 alias vimrc="vim ~/.custom_vimrc/vimrc.vim"
 alias desktop="cd ~/Desktop && ls"
 alias downloads="cd ~/Downloads && ls"
@@ -12,11 +11,29 @@ alias downloads="cd ~/Downloads && ls"
 alias gitupdate="git status && git pull && git push && git status"
 alias pim="ipython qtconsole & vim"
 alias bashrc="vim ~/.custombashrc/.bashrc"
+alias brc="vim ~/.custombashrc/.bashrc"
+alias sbashrc="source ~/.custombashrc/.bashrc"
+alias sbrc="source ~/.custombashrc/.bashrc"
+alias bashprofile="vim ~/.bash_profile"
+alias bpf="vim ~/.bash_profile"
+# this is to ensure that vim colorschemes appear inside of tmux
+alias tmux="TERM=screen-256color-bce tmux"
+alias v="vim -p"
+alias c="clear"
+## a quick way to get out of current directory ##
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias .....='cd ../../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../..'
 
-# vim stuff
-# alias vim="/usr/local/Cellar/vim/7.4.1830/bin/vim"
+# Arduino 
+export ARDUINO_DIR="/Applications/Arduino.app/Contents/Java"
+export ARDMK_DIR="/usr/local"
+export AVR_TOOLS_DIR="/usr"
 
-# this allows me to press <ctrl> S to send lines of code from vim into ipython
+# this allows me to press <ctrl> S to send lines of code from vim into ipythonkk
 stty -ixon
 
 ############################## iTerm2 ############################################
@@ -35,37 +52,6 @@ stty stop undef
 
 # add path to git-annex
 export PATH=/Applications/git-annex.app/Contents/MacOS:$PATH
-
-######################### Work Realated ##########################################
-
-alias startwork="kad && workon kad-rad && pyenv global 3.4.3 && git status-kad && devp ilogin nathan"
-alias comics="workon kad-rad && cd ~/workspace/science/research/comics && git status"
-alias manta="cd ~/workspace/manta && source ~/workspace/manta/flask/flask/bin/activate && git status"
-alias science="cd ~/workspace/science && ls"
-alias kad="cd ~/workspace/science/libraries/python/kad && workon kad-rad && ls"
-alias reaktorutils="workon kad-rad && cd ~/workspace/science/libraries/python/kad/kad/reaktor/ && ls"
-alias reaktorgrader="workon kad-rad && cd ~/workspace/science/auto_grading/code/calarts_synthesis_reaktor2 && ls"
-alias autograde="workon kad-rad && cd
-~/workspace/science/auto_grading && ls"
-alias reaktorcrit="workon kad-rad && cd ~/workspace/science/auto_grading/code/calarts_synthesis_reaktor2/reaktor_grader2/media/criteria && ls"
-alias max="workon kad-rad && cd ~/workspace/science/auto_grading/code/max_msp_grader && ls"
-alias p5js="workon kad-rad && cd /Users/nathan/workspace/science/auto_grading/ensemble/p5js_code_grader/p5js_code_grader && ls"
-alias pfjs="workon kad-rad && cd /Users/nathan/workspace/science/auto_grading/ensemble/p5js_code_grader/p5js_code_grader && ls"
-alias rgtox="workon kad-rad && cd ~/workspace/science/auto_grading/code/calarts_synthesis_reaktor2 && tox"
-alias toxitt="make clean && tox -e verbose ALL=http://devpi.kadenze.com/nathan/dev/+simple/ &&
-    make clean && rm -r .cache/"
-alias toxit="make clean && tox -e verbose"
-alias wks="cd ~/workspace && ls"
-alias gandalf_home="ssh nathan@76.170.76.201"
-alias gandalf_work="ssh nathan@192.168.1.2"
-alias computermusic="cd ~/workspace/computer_music && git status && ls -la"
-alias website="cd ~/workspace/nathanshaw.github.io && ls"
-
-############### Not Work ###########################
-alias ios="cd ~/workspace/ios_dev/active_projects/BiTDEPH\ Synthesizer && git status && ls -la"
-
-alias toxmax="workon kad-rad && cd ~/workspace/science/research/max_msp/max_msp_grader && ls && git checkout tests/. && tox -e verbose"
-alias website="cd ~/workspace/nathanshaw.github.io && ls"
 
 workon() {
     . $HOME/.virtualenvs/$1/bin/activate
@@ -120,13 +106,9 @@ masters(){
 
 }
 
-# this was one I downloaded
-# this was my old one
-# PS1="**\h:\W**🌀   "
-
-# export PS1=" \[\033[33;1m\]\$(pyenv_python_version)\[\033[36;1m\]*\W\*🌀  \[\033[0;37m\]"
-source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
-export PS1="\n\[\[\033[38;5;44m\]\t\[\033[31m\]:\[\033[38;5;194m\]\w\[\033[38;5;166m\]$(__git_ps1) 💎\[\033[38;5;159m\]\]  "
+GIT_PROMPT_ONLY_IN_REPO=1
+source ~/.bash-git-prompt/gitprompt.sh
+export PS1="\[\033[38;5;44m\][\t]\[\033[31m\]\[\033[38;5;194m\]\w\[\033[38;5;166m\] 💎  \[\033[38;5;195m\]"
 
 ##################################################################
 
@@ -136,5 +118,3 @@ function export_json(){
 
 eval "$(pyenv init -)"
 
-# this is to ensure that vim colorschemes appear inside of tmux
-alias tmux="TERM=screen-256color-bce tmux"
